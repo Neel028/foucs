@@ -1,25 +1,20 @@
-import logo from './logo.svg';
 import './App.css';
+import { useRef, useState } from 'react';
 
-function App() {
+export default function App() {
+  let[data,setdata]=useState('')
+  let pass = useRef()
+  let focus =()=>{
+    pass.current.focus()
+  }
+  let change =()=>{
+    setdata(data=pass.current.value)
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <input type="text" ref={pass} onChange={()=>change()}/>
+      <button onClick={focus}>click</button>
+      <h2>{data}</h2>
     </div>
   );
 }
-
-export default App;
